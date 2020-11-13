@@ -14,8 +14,19 @@
 #### Create Docker
 
 ```Bash
-sudo docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=doesntMatter" \
-   -p 1433:1433 --name FonzDB -h FonzDB \
+sudo docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=<YourStrong@Passw0rd>" \
+   -p 1433:1433 --name fonzDB -h fonzDB \
    -d mcr.microsoft.com/mssql/server:2019-latest
 ```
 # 
+```Bash
+sudo docker exec -it fonzDB /opt/mssql-tools/bin/sqlcmd \
+   -S localhost -U SA -P "<YourStrong@Passw0rd>" \
+   -Q 'ALTER LOGIN SA WITH PASSWORD="<YourNewStrong@Passw0rd>"'
+```
+
+```Bash
+sudo docker exec -it fonzDB "bash"
+
+/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "<YourNewStrong@Passw0rd>"
+```
