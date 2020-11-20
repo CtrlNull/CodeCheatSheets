@@ -11,7 +11,7 @@
 # DOCKER
 [MS Docker Documentation](https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?view=sql-server-ver15&pivots=cs1-bash)
 
-#### Create Docker
+#### Create Docker FOR SQL
 
 ```Bash
 sudo docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=<YourStrong@Passw0rd>" \
@@ -29,4 +29,19 @@ sudo docker exec -it fonzDB /opt/mssql-tools/bin/sqlcmd \
 sudo docker exec -it fonzDB "bash"
 
 /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "<YourNewStrong@Passw0rd>"
+```
+
+#### Create Docker For SFTP
+
+[SFTP container doucmentation](https://hub.docker.com/r/atmoz/sftp)
+
+UserName: foo
+Pass: pass
+
+```Bash
+   docker pull atmoz/sftp
+```
+
+```Bash
+docker run -p 22:22 -d atmoz/sftp foo:pass:::upload
 ```
